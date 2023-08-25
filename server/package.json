@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend for notes-app",
   "main": "server.js",
   "scripts": {
