@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 connectDB()
@@ -14,13 +15,17 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(notFound)
-app.use(errorHandler)
+
+// Users Route
+app.use('/api/users', userRoutes)
 
 // Entry/Home route
 app.get('/', (req, res) => {
   res.send('Server is up and running fast as flash')
 })
+
+app.use(notFound)
+app.use(errorHandler)
 
 app.listen(process.env.PORT, () => {
   console.log(`server is running on port ${process.env.PORT}`)
