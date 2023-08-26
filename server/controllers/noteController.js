@@ -37,7 +37,7 @@ const getAllNotes = asyncHandler(async (req, res) => {
 })
 
 // @desc - Get single note
-// route GET /api/note/:id
+// route GET /api/notes/:id
 // @access Private
 const getSingleNote = asyncHandler(async (req, res) => {
   const note = await Note.findById(req.params.id)
@@ -51,7 +51,7 @@ const getSingleNote = asyncHandler(async (req, res) => {
 })
 
 // @desc - Update note
-// route PUT /api/note/update-note/:id
+// route PUT /api/notes/update-note/:id
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
   const note = await Note.findByIdAndUpdate(req.params.id)
@@ -69,7 +69,7 @@ const updateNote = asyncHandler(async (req, res) => {
 })
 
 // @desc - Delete note
-// route DELETE /api/note/delete-note/:id
+// route DELETE /api/notes/delete-note/:id
 // @access Private
 const deleteNote = asyncHandler(async (req, res) => {
   const note = await Note.findByIdAndDelete(req.params.id)
@@ -81,4 +81,26 @@ const deleteNote = asyncHandler(async (req, res) => {
   }
 })
 
-export { createNote, getAllNotes, getSingleNote, updateNote, deleteNote }
+// @desc - Get note by category
+// route GET /api/notes/notes-by-category
+// @access Private
+const getNoteByCategory = asyncHandler(async (req, res) => {
+  const { category } = req.body
+  const filteredNotes = await Note.find({ category: category })
+
+  if (filteredNotes) {
+    res.status(200).json(filteredNotes)
+  } else {
+    res.status(400)
+    throw new Error('No notes found for selected category')
+  }
+})
+
+export {
+  createNote,
+  getAllNotes,
+  getSingleNote,
+  updateNote,
+  deleteNote,
+  getNoteByCategory,
+}
