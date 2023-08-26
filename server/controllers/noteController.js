@@ -96,6 +96,21 @@ const getNoteByCategory = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc - Get note by category
+// route GET /api/notes/notes-by-category
+// @access Private
+const getNotesByUserId = asyncHandler(async (req, res) => {
+  const { userId } = req.body
+  const filteredNotes = await Note.find({ userId: userId })
+
+  if (filteredNotes) {
+    res.status(200).json(filteredNotes)
+  } else {
+    res.status(400)
+    throw new Error('No notes found for selected category')
+  }
+})
+
 export {
   createNote,
   getAllNotes,
@@ -103,4 +118,5 @@ export {
   updateNote,
   deleteNote,
   getNoteByCategory,
+  getNotesByUserId,
 }
