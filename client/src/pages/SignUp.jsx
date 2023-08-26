@@ -34,11 +34,7 @@ const SignUp = () => {
       </div>
       <form onSubmit={submitHandler}>
         <div className='max-w-[300px] h-auto border-[.12rem] border-gray-400 p-4 rounded-md'>
-          <div className='flex justify-center mb-6'>
-            <img src='' alt='logo' className='h-16 w-16 -mt-14 bg-white' />
-          </div>
-
-          <h1 className='text-xl font-semibold mb-6'>Create your account</h1>
+          <h1 className='text-2xl font-semibold mb-6'>Create your account</h1>
           <div className='mb-4'>
             <input
               type='text'
