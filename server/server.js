@@ -5,6 +5,7 @@ import cors from 'cors'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
 import userRoutes from './routes/userRoutes.js'
+import noteRoutes from './routes/noteRoutes.js'
 
 dotenv.config()
 connectDB()
@@ -18,6 +19,7 @@ app.use(cookieParser())
 
 // Users Route
 app.use('/api/users', userRoutes)
+app.use('/api/notes', noteRoutes)
 
 // Entry/Home route
 app.get('/', (req, res) => {
