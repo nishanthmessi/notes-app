@@ -27,6 +27,9 @@ export const notesApiSlice = apiSlice.injectEndpoints({
     getNoteByCategory: builder.query({
       query: () => ({ url: `${NOTES_URL}/notes-by-category` }),
     }),
+    getUserNotes: builder.query({
+      query: (id) => ({ url: `${NOTES_URL}/your-notes/${id}` }),
+    }),
     deleteNote: builder.mutation({
       query: (id) => ({
         url: `${NOTES_URL}/delete-note/${id}`,
@@ -42,5 +45,6 @@ export const {
   useGetAllNotesQuery,
   useGetSingleNoteQuery,
   useGetNoteByCategoryQuery,
+  useGetUserNotesQuery,
   useDeleteNoteMutation,
 } = notesApiSlice

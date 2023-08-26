@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useGetAllNotesQuery } from '../features/slices/notes/noteApiSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useGetUserNotesQuery } from '../features/slices/notes/noteApiSlice'
 import Edit2LineIcon from 'remixicon-react/Edit2LineIcon'
 import DeleteBin2LineIcon from 'remixicon-react/DeleteBin2LineIcon'
 
 const Notes = () => {
-  const { data: allNotes } = useGetAllNotesQuery()
+  const { userInfo } = useSelector((state) => state.auth)
+
+  const { data: allNotes } = useGetUserNotesQuery(userInfo._id)
+
+  console.log(allNotes)
 
   return (
     <div>

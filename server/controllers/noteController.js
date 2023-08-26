@@ -96,11 +96,11 @@ const getNoteByCategory = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc - Get note by category
-// route GET /api/notes/notes-by-category
+// @desc - Get Logged in User Notes
+// route GET /api/notes/your-notes
 // @access Private
 const getNotesByUserId = asyncHandler(async (req, res) => {
-  const { userId } = req.body
+  const userId = req.params.id
   const filteredNotes = await Note.find({ userId: userId })
 
   if (filteredNotes) {
