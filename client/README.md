@@ -21,4 +21,4 @@ password: 11112222
 
 That's it.
 
-Live: https://notes-app-eight-tan.vercel.app/login
+Live: https://notes-app-eight-tan.vercel.app/
