@@ -20,10 +20,6 @@ export const notesApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Note'],
     }),
-    // getAllNotes: builder.query({
-    //   query: () => ({ url: `${NOTES_URL}/all-notes` }),
-    //   providesTags: ['Note'],
-    // }),
     getSingleNote: builder.query({
       query: (id) => ({ url: `${NOTES_URL}/note/${id}` }),
       providesTags: ['Note'],
@@ -48,7 +44,6 @@ export const notesApiSlice = apiSlice.injectEndpoints({
 export const {
   useCreateNoteMutation,
   useUpdateNoteMutation,
-  useGetAllNotesQuery,
   useGetSingleNoteQuery,
   useGetNoteByCategoryQuery,
   useGetUserNotesQuery,
