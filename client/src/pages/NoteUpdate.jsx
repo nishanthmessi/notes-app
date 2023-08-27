@@ -1,30 +1,42 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useCreateNoteMutation } from '../features/slices/notes/noteApiSlice'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useUpdateNoteMutation } from '../features/slices/notes/noteApiSlice'
 import { categories } from '../utils/db'
 
-const NoteForm = () => {
+const NoteUpdate = () => {
+  const [id, setId] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [category, setCategory] = useState('')
+  const [userId, setUserId] = useState('')
 
   const navigate = useNavigate()
 
-  const { userInfo } = useSelector((state) => state.auth)
-  const [createNote, { isLoading }] = useCreateNoteMutation()
+  const { noteData } = useSelector((state) => state.note)
 
-  const handleNoteCreation = async () => {
-    const noteData = {
-      userId: userInfo._id,
+  const [updateNote] = useUpdateNoteMutation()
+
+  useEffect(() => {
+    setId(noteData._id)
+    setTitle(noteData.title)
+    setContent(noteData.content)
+    setCategory(noteData.category)
+    setUserId(noteData.userId)
+  }, [])
+
+  const handleNoteUpdate = async () => {
+    const updatedData = {
+      _id: id,
       title,
       content,
       category,
+      userId,
     }
 
     try {
-      await createNote(noteData).unwrap()
-      navigate('/')
+      await updateNote({ updatedData, id }).unwrap()
+      navigate('/current-note')
     } catch (err) {
       console.log(err.data.message || err.error)
     }
@@ -35,13 +47,13 @@ const NoteForm = () => {
       <div className='relative w-full h-full max-w-lg md:h-auto'>
         <div className='relative bg-white rounded-lg'>
           <Link
-            to='/'
+            to='/current-note'
             className='absolute top-3 right-2.5 text-gray-400 bg-gray-700 py-2 px-4 rounded-full'
           >
             x
           </Link>
           <div className='flex flex-col p-8 gap-6'>
-            <h1 className='text-2xl font-medium'>Create Note</h1>
+            <h1 className='text-2xl font-medium'>Update Note</h1>
             <div>
               <h1 className='text-lg'>Title</h1>
               <input
@@ -55,14 +67,14 @@ const NoteForm = () => {
               <h1 className='text-lg'>Content</h1>
               <textarea
                 type='text'
-                className='border-[.10rem] border-gray-500 rounded-md w-full px-1 break-word'
+                className='border-[.10rem] border-gray-500 rounded-md w-full px-1'
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 rows='3'
               />
             </div>
             <div>
-              <h1 className='text-lg pb-2'>Category</h1>
+              <h1 className='text-lg'>Category</h1>
               <select
                 className='w-48 rounded-md p-[.4rem] bg-gray-100'
                 value={category}
@@ -75,19 +87,12 @@ const NoteForm = () => {
                   </option>
                 ))}
               </select>
-              {/* <h1 className='text-lg'>Category</h1>
-              <input
-                type='text'
-                className='border-[.10rem] border-gray-500 rounded-md w-full py-[.5rem] px-1'
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              /> */}
             </div>
             <button
               className='bg-gray-800 w-full py-2 rounded-md text-white'
-              onClick={handleNoteCreation}
+              onClick={handleNoteUpdate}
             >
-              Add Note
+              Update Note
             </button>
           </div>
         </div>
@@ -96,4 +101,4 @@ const NoteForm = () => {
   )
 }
 
-export default NoteForm
+export default NoteUpdate

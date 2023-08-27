@@ -15,6 +15,8 @@ import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp.jsx'
 import NoteForm from './components/NoteForm.jsx'
+import Note from './pages/Note.jsx'
+import NoteUpdate from './pages/NoteUpdate.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +27,8 @@ const router = createBrowserRouter(
       <Route path='' element={<PrivateRoute />}>
         <Route path='/' element={<Home />} />
         <Route path='/create-note' element={<NoteForm />} />
+        <Route path='/current-note' element={<Note />} />
+        <Route path='/update-note' element={<NoteUpdate />} />
       </Route>
     </Route>
   )

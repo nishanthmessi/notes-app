@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <div className='py-8'>
       <ul className='flex justify-between items-center'>
-        <Link to='/' className='text-2xl font-semibold'>
+        <Link to='/' className='text-2xl font-semibold underline'>
           Notely
         </Link>
         <div className='hidden md:block rounded-md'>

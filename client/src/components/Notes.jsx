@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetUserNotesQuery } from '../features/slices/notes/noteApiSlice'
-import Edit2LineIcon from 'remixicon-react/Edit2LineIcon'
-import DeleteBin2LineIcon from 'remixicon-react/DeleteBin2LineIcon'
+import { Link } from 'react-router-dom'
+import { setNoteId } from '../features/slices/notes/noteSlice'
 
 const Notes = () => {
+  const dispatch = useDispatch()
+
   const { userInfo } = useSelector((state) => state.auth)
-
   const { data: allNotes } = useGetUserNotesQuery(userInfo._id)
-
-  console.log(allNotes)
 
   return (
     <div>
@@ -17,34 +15,43 @@ const Notes = () => {
         <div>loading</div>
       ) : (
         <>
-          <div className='grid grid-cols-3 gap-6'>
-            {allNotes.map((note) => (
-              <>
-                <div
-                  key={note._id}
-                  className='flex flex-col border-2 p-4 w-auto max-w-[500px] rounded-md'
-                >
-                  <h1 className='text-lg font-medium'>{note.title}</h1>
-                  <p className='text-lg'>{note.content}</p>
-                  <p className=''>{note.category}</p>
-
-                  <div className='flex justify-between items-center pt-4'>
-                    <div>
-                      <p>{note.createdAt}</p>
+          {allNotes.length == 0 ? (
+            <div className='flex flex-col justify-center items-center gap-10 h-[50vh]'>
+              <h1 className='text-7xl'>Welcome to Notely</h1>
+              <p className='text-3xl'>Start adding notes !!</p>
+            </div>
+          ) : (
+            <div className='grid grid-cols-3 gap-6'>
+              {allNotes.map((note) => (
+                <>
+                  <Link
+                    to='/current-note'
+                    key={note._id}
+                    className='flex flex-col border-2 p-4 w-auto max-w-[500px] rounded-md'
+                    onClick={() => dispatch(setNoteId(note._id))}
+                  >
+                    <div
+                      className='flex justify-between items-center'
+                      key={note._id}
+                    >
+                      <h1 className='text-xl font-medium py-2'>{note.title}</h1>
+                      <p className='bg-emerald-300 px-2 py-[.10rem] rounded-2xl text-sm'>
+                        {note.category}
+                      </p>
                     </div>
-                    <div className='flex gap-2'>
-                      <button className=' bg-blue-200 hover:bg-blue-300 text-gray-500 hover:text-blue-500 rounded-full px-1 transition duration-400'>
-                        <Edit2LineIcon className='h-7 w-5' />
-                      </button>
-                      <button className='bg-red-200 hover:bg-red-300 text-gray-500 hover:text-red-500 rounded-full px-1 transition duration-400'>
-                        <DeleteBin2LineIcon className=' h-7 w-5' />
-                      </button>
+                    <p className='text-lg text-cutoff pt-4'>{note.content}</p>
+                    <div className='flex justify-between items-center pt-6'>
+                      <p>
+                        Created @{' '}
+                        {new Date(note.createdAt).toLocaleDateString()}
+                      </p>
+                      <p>{new Date(note.createdAt).toLocaleTimeString()}</p>
                     </div>
-                  </div>
-                </div>
-              </>
-            ))}
-          </div>
+                  </Link>
+                </>
+              ))}
+            </div>
+          )}
         </>
       )}
     </div>

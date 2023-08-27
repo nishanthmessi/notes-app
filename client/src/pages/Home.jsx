@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Category from '../components/Category'
 import Notes from '../components/Notes'
 import { Link } from 'react-router-dom'
 
@@ -18,6 +19,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      <Category />
       <Notes />
     </div>
   )

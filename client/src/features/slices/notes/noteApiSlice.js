@@ -10,31 +10,37 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['Note'],
     }),
     updateNote: builder.mutation({
-      query: (data, id) => ({
+      query: ({ updatedData, id }) => ({
         url: `${NOTES_URL}/update-note/${id}`,
         method: 'PUT',
-        body: data,
+        body: updatedData,
       }),
+      invalidatesTags: ['Note'],
     }),
-    getAllNotes: builder.query({
-      query: () => ({ url: `${NOTES_URL}/all-notes` }),
-    }),
+    // getAllNotes: builder.query({
+    //   query: () => ({ url: `${NOTES_URL}/all-notes` }),
+    //   providesTags: ['Note'],
+    // }),
     getSingleNote: builder.query({
       query: (id) => ({ url: `${NOTES_URL}/note/${id}` }),
+      providesTags: ['Note'],
     }),
     getNoteByCategory: builder.query({
       query: () => ({ url: `${NOTES_URL}/notes-by-category` }),
     }),
     getUserNotes: builder.query({
       query: (id) => ({ url: `${NOTES_URL}/your-notes/${id}` }),
+      providesTags: ['Note'],
     }),
     deleteNote: builder.mutation({
       query: (id) => ({
         url: `${NOTES_URL}/delete-note/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Note'],
     }),
   }),
 })
