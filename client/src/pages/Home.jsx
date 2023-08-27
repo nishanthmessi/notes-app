@@ -4,25 +4,31 @@ import Notes from '../components/Notes'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetUserNotesQuery } from '../features/slices/notes/noteApiSlice'
-import { setNotes } from '../features/slices/notes/noteSlice'
+import { setNotes, setCurrentPage } from '../features/slices/notes/noteSlice'
 
 const Home = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null)
   const dispatch = useDispatch()
 
   const { userInfo } = useSelector((state) => state.auth)
   const notes = useSelector((state) => state.note.notes)
+  const currentPage = useSelector((state) => state.note.currentPage)
+  const totalPages = useSelector((state) => state.note.totalPages)
+
   const { data: notesData } = useGetUserNotesQuery(userInfo._id)
 
   const categories = [...new Set(notesData?.map((note) => note.category))]
 
-  console.log(categories)
-
-  const [selectedCategory, setSelectedCategory] = useState(null)
-
+  // func to handle category selection
   const handleCategorySelect = (category) => {
     setSelectedCategory(category)
     const filteredNotes = notesData.filter((note) => note.category === category)
     dispatch(setNotes(filteredNotes))
+  }
+
+  // func to handle pagination
+  const handlePaginationClick = (newPage) => {
+    dispatch(setCurrentPage(newPage))
   }
 
   return (
@@ -52,6 +58,18 @@ const Home = () => {
         handleCategorySelect={handleCategorySelect}
       />
       <Notes notes={selectedCategory ? notes : notesData} />
+
+      {/* <div className='flex justify-center mt-4'>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            className='px-4'
+            onClick={() => handlePaginationClick(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div> */}
     </div>
   )
 }

@@ -54,16 +54,8 @@ const Note = () => {
             <div className='flex flex-col items-start'>
               <div className='text-start'>
                 <h1 className='text-4xl mb-2'>{singleNote.title}</h1>
-                <p className='mb-6'>{singleNote.category}</p>
-                {/* <input
-                  type='text'
-                  value={notetitle}
-                  className={`border-none outline-none`}
-                  onChange={(e) => setNoteTitle(e.target.value)}
-                /> */}
-
+                <p className='mb-6 underline'>{singleNote.category}</p>
                 <p className='text-3xl break-words'>{singleNote.content}</p>
-
                 <p className='mt-6'>
                   Created @{' '}
                   {new Date(singleNote.createdAt).toLocaleDateString()}
@@ -89,7 +81,6 @@ const Note = () => {
                   Delete Note
                 </button>
               </div>
-
               <p className='mt-6 sm:mt-0'>
                 Last updated: {new Date(singleNote.updatedAt).toLocaleString()}
               </p>

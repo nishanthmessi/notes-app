@@ -13,7 +13,7 @@ const SignUp = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const [register, { isLoading }] = useRegisterMutation()
+  const [register] = useRegisterMutation()
 
   const submitHandler = async (e) => {
     e.preventDefault()

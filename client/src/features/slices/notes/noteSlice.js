@@ -6,6 +6,8 @@ const initialState = {
     : null,
   noteData: {},
   notes: [],
+  currentPage: 1,
+  totalPages: 1,
 }
 
 const noteSlice = createSlice({
@@ -22,8 +24,20 @@ const noteSlice = createSlice({
     setNotes: (state, action) => {
       state.notes = action.payload
     },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload
+    },
+    setTotalPages: (state, action) => {
+      state.totalPages = action.payload
+    },
   },
 })
 
-export const { setNoteId, setNoteData, setNotes } = noteSlice.actions
+export const {
+  setNoteId,
+  setNoteData,
+  setNotes,
+  setCurrentPage,
+  setTotalPages,
+} = noteSlice.actions
 export default noteSlice.reducer

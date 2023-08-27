@@ -75,13 +75,6 @@ const NoteForm = () => {
                   </option>
                 ))}
               </select>
-              {/* <h1 className='text-lg'>Category</h1>
-              <input
-                type='text'
-                className='border-[.10rem] border-gray-500 rounded-md w-full py-[.5rem] px-1'
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              /> */}
             </div>
             <button
               className='bg-gray-800 w-full py-2 rounded-md text-white'
