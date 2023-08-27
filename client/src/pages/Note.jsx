@@ -9,6 +9,7 @@ import Edit2LineIcon from 'remixicon-react/Edit2LineIcon'
 import DeleteBin2LineIcon from 'remixicon-react/DeleteBin2LineIcon'
 import ArrowLeftSLineIcon from 'remixicon-react/ArrowLeftSLineIcon'
 import { setNoteData } from '../features/slices/notes/noteSlice'
+import Spinner from '../components/Spinner'
 
 const Note = () => {
   const { noteId } = useSelector((state) => state.note)
@@ -42,7 +43,9 @@ const Note = () => {
   return (
     <>
       {!singleNote ? (
-        <div>Loading</div>
+        <div className='flex justify-center items-center h-[60vh]'>
+          <Spinner />
+        </div>
       ) : (
         <>
           <div className='py-6'>

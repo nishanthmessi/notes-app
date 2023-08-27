@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setNoteId } from '../features/slices/notes/noteSlice'
+import Spinner from './Spinner'
 
 const Notes = ({ notes }) => {
   const dispatch = useDispatch()
@@ -8,7 +9,9 @@ const Notes = ({ notes }) => {
   return (
     <div>
       {!notes ? (
-        <div>loading</div>
+        <div className='flex justify-center items-center h-[60vh]'>
+          <Spinner />
+        </div>
       ) : (
         <>
           {notes.length == 0 ? (
