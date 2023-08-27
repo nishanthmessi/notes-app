@@ -8,6 +8,8 @@ import { setNotes, setCurrentPage } from '../features/slices/notes/noteSlice'
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+
   const dispatch = useDispatch()
 
   const { userInfo } = useSelector((state) => state.auth)
@@ -31,13 +33,34 @@ const Home = () => {
     dispatch(setCurrentPage(newPage))
   }
 
+  // Search func
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value)
+  }
+
+  const filteredNotes = notesData?.filter(
+    (note) =>
+      (!selectedCategory || note.category === selectedCategory) &&
+      (searchTerm === '' ||
+        note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        note.content.toLowerCase().includes(searchTerm.toLowerCase()))
+  )
+
   return (
     <div className='flex flex-col mt-4 pb-8'>
       <div className='flex justify-between items-center gap-8'>
         <h1 className='text-xl sm:text-2xl font-medium py-6'>
           Your best notes organizer!
         </h1>
-        <div>
+
+        <div className='flex gap-6'>
+          <input
+            type='text'
+            placeholder='Search by title or content'
+            className='hidden md:block bg-gray-100 px-2 py-[1.5] rounded-md outline-none'
+            value={searchTerm}
+            onChange={handleSearch}
+          />
           <Link
             to='/create-note'
             className='hidden sm:block border-[.12rem] border-gray-400 hover:bg-gray-800 hover:text-white rounded-md md:px-2 md:py-1 transition duration-400'
@@ -52,12 +75,21 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      <input
+        type='text'
+        placeholder='Search by title or content'
+        className='md:hidden bg-gray-100 p-2 rounded-md'
+        value={searchTerm}
+        onChange={handleSearch}
+      />
       <Category
         categories={categories}
         selectedCategory={selectedCategory}
         handleCategorySelect={handleCategorySelect}
       />
-      <Notes notes={selectedCategory ? notes : notesData} />
+      <Notes
+        notes={selectedCategory || searchTerm ? filteredNotes : notesData}
+      />
 
       {/* <div className='flex justify-center mt-4'>
         {Array.from({ length: totalPages }, (_, index) => (

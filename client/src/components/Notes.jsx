@@ -16,8 +16,9 @@ const Notes = ({ notes }) => {
         <>
           {notes.length == 0 ? (
             <div className='flex flex-col justify-center items-center gap-10 h-[50vh]'>
-              <h1 className='text-7xl'>Welcome to Notely</h1>
-              <p className='text-3xl'>Start adding notes !!</p>
+              <h1 className='text-3xl sm:text-7xl text-center'>
+                No notes found!!
+              </h1>
             </div>
           ) : (
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
