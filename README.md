@@ -1,4 +1,4 @@
-# notes-app
+# Notely (notes-app) - Build using MERN including JWT, TailwindCSS, RTK Query
 The only notes app you ever need 
 The note organizer helps in storing notes as well as viewing, updated and deleted notes. User can filter notes based on categories, do search based on title and content also. Super handy right ?!
 
