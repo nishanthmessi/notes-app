@@ -73,7 +73,7 @@ const Note = () => {
                 </p>
               </div>
             </div>
-            <div className='flex justify-between items-center mt-10'>
+            <div className='flex flex-col sm:flex-row justify-between items-center mt-10'>
               <div className='flex gap-8'>
                 <button
                   className='flex gap-2 p-2 bg-blue-500 rounded-md text-gray-300 hover:text-white'
@@ -90,7 +90,7 @@ const Note = () => {
                 </button>
               </div>
 
-              <p>
+              <p className='mt-6 sm:mt-0'>
                 Last updated: {new Date(singleNote.updatedAt).toLocaleString()}
               </p>
             </div>

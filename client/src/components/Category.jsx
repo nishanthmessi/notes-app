@@ -1,8 +1,8 @@
 const Category = ({ categories, selectedCategory, handleCategorySelect }) => {
   return (
-    <div className='flex gap-6 my-6'>
+    <div className='flex flex-col sm:flex-row gap-6 my-6'>
       <h1 className='text-lg font-medium'>Categories :</h1>
-      <ul className='flex gap-8'>
+      <ul className='flex flex-wrap gap-8'>
         <li
           className={`cursor-pointer ${
             !selectedCategory

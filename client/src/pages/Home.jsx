@@ -26,17 +26,23 @@ const Home = () => {
   }
 
   return (
-    <div className='flex flex-col mt-4'>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-2xl font-medium py-6'>
+    <div className='flex flex-col mt-4 pb-8'>
+      <div className='flex justify-between items-center gap-8'>
+        <h1 className='text-xl sm:text-2xl font-medium py-6'>
           Your best notes organizer!
         </h1>
         <div>
           <Link
             to='/create-note'
-            className='border-[.12rem] border-gray-400 hover:bg-gray-800 hover:text-white rounded-md px-2 py-1 transition duration-400'
+            className='hidden sm:block border-[.12rem] border-gray-400 hover:bg-gray-800 hover:text-white rounded-md md:px-2 md:py-1 transition duration-400'
           >
             Add New Note
+          </Link>
+          <Link
+            to='/create-note'
+            className='sm:hidden border-[.12rem] border-gray-400 hover:bg-gray-800 hover:text-white rounded-md px-2 py-1 transition duration-400'
+          >
+            +
           </Link>
         </div>
       </div>

@@ -28,12 +28,13 @@ const SignUp = () => {
   }
 
   return (
-    <div className='grid grid-cols-2 gap-20 items-center h-[90vh]'>
-      <div className='flex flex-col justify-end items-end text-7xl font-semibold gap-4'>
+    <div className='grid grid-col-1 sm:grid-cols-2 sm:gap-20 items-center h-[90vh]'>
+      <div className='flex flex-col lg:items-center text-7xl font-semibold gap-4'>
         <h1>Notely</h1>
+        <p>Get Started!</p>
       </div>
       <form onSubmit={submitHandler}>
-        <div className='max-w-[300px] h-auto border-[.12rem] border-gray-400 p-4 rounded-md'>
+        <div className='w-full sm:max-w-[300px] h-auto border-[.12rem] border-gray-400 p-4 rounded-md'>
           <h1 className='text-2xl font-semibold mb-6'>Create your account</h1>
           <div className='mb-4'>
             <input

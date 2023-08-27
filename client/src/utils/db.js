@@ -25,7 +25,7 @@ export const categories = [
     color: 'yellow',
   },
   {
-    id: 4,
+    id: 6,
     name: 'Wishlist',
     color: 'purple',
   },
