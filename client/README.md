@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+## Hello There!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The note organizer helps in storing notes as well as viewing, updated and deleted notes. User can filter notes based on categories, do search based on title and content also. Super handy right ?!
 
-Currently, two official plugins are available:
+To run app locally, clone or download the repo. Open folder and run command "npm install"
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Create a .env file in server folder. 
 
-## Expanding the ESLint configuration
+#Server changes
+Create a .env file
+1) add your mongodb url with new collection
+2) add jwt secret
+3) add port
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#Client changes --
+Open vite.config.js. Change the target url to localhost which you are currently running the server. eg: (http://localhost:5000)
 
-- Configure the top-level `parserOptions` property like this:
+#Guest Login --
+email: testuser@mail.com,
+password: 11112222
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+That's it.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Live: https://notes-app-eight-tan.vercel.app/
