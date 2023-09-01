@@ -8,9 +8,9 @@ Create a .env file in server folder.
 
 #Server changes Create a .env file
 
-add your mongodb url with new collection
-add jwt secret
-add port
+add your mongodb url with new collection,
+add jwt secret,
+add port,
 #Client changes -- Open vite.config.js. Change the target url to localhost which you are currently running the server. eg: (http://localhost:5000)
 
 #Guest Login -- email: testuser@mail.com, password: 11112222
