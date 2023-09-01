@@ -31,6 +31,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
       query: (id, page = 1, limit = 8) => ({
         url: `${NOTES_URL}/your-notes/${id}?page=${page}&limit=${limit}`,
       }),
+      transformResponse: (res) => res.reverse(),
       providesTags: ['Note'],
     }),
     deleteNote: builder.mutation({
