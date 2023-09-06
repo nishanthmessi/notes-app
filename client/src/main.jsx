@@ -25,7 +25,7 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<SignUp />} />
       {/* Private Routes */}
       <Route path='' element={<PrivateRoute />}>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/create-note' element={<NoteForm />} />
         <Route path='/current-note' element={<Note />} />
         <Route path='/update-note' element={<NoteUpdate />} />

@@ -21,7 +21,7 @@ const SignUp = () => {
     try {
       const res = await register({ name, email, password }).unwrap()
       dispatch(setCredentials({ ...res }))
-      navigate('/')
+      navigate('/home')
     } catch (err) {
       console.log(err.data.message || err.error)
     }

@@ -19,7 +19,7 @@ const Login = () => {
     try {
       const res = await loginApiCall({ email, password }).unwrap()
       dispatch(setCredentials({ ...res }))
-      navigate('/')
+      navigate('/home')
     } catch (err) {
       console.log(err.data.message || err.error)
     }

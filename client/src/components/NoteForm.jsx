@@ -24,7 +24,7 @@ const NoteForm = () => {
 
     try {
       await createNote(noteData).unwrap()
-      navigate('/')
+      navigate('/home')
     } catch (err) {
       console.log(err.data.message || err.error)
     }
@@ -35,7 +35,7 @@ const NoteForm = () => {
       <div className='relative w-full h-full max-w-lg md:h-auto'>
         <div className='relative bg-white rounded-lg'>
           <Link
-            to='/'
+            to='/home'
             className='absolute top-3 right-2.5 text-gray-400 bg-gray-700 py-2 px-4 rounded-full'
           >
             x
