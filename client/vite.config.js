@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://notely-app-5442.onrender.com',
+        target: 'https://nice-hat-ant.cyclic.app',
         changeOrigin: true,
       },
     },
