@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React from 'react'
 import {
   useGetSingleNoteQuery,
   useDeleteNoteMutation,
@@ -34,7 +34,7 @@ const Note = () => {
   const handleNoteDelete = async () => {
     try {
       await deleteNote(noteId)
-      navigate('/')
+      navigate('/home')
     } catch (err) {
       console.log(err.data.message || err.error)
     }
@@ -49,7 +49,7 @@ const Note = () => {
       ) : (
         <>
           <div className='py-6'>
-            <Link to='/' className='flex gap-1'>
+            <Link to='/home' className='flex gap-1'>
               <ArrowLeftSLineIcon /> Back to Notes
             </Link>
           </div>
