@@ -53,7 +53,7 @@ const Login = () => {
             />
           </div>
           <button
-            className='bg-fuchsia-500 px-8 py-2 rounded-md text-white hover:shadow-lg hover:shadow-fuchsia-400 transition duration-500 w-full'
+            className='bg-emerald-500 px-8 py-2 rounded-md text-white hover:shadow-lg hover:shadow-emerald-400 transition duration-500 w-full'
             type='submit'
           >
             Login
@@ -61,7 +61,7 @@ const Login = () => {
           <div className='py-4'>
             <Link
               to='/signup'
-              className='text-sm text-gray-500 hover:text-gray-900 hover:underline underline-offset-2 decoration-fuchsia-600'
+              className='text-sm text-gray-500 hover:text-gray-900 hover:underline underline-offset-2 decoration-emerald-600'
             >
               Don't have an account ? Sign Up
             </Link>
